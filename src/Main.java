@@ -5,12 +5,24 @@ import java.util.Scanner;
  */
 public class Main {
 	public static void main(String[] args) {
-        int tableau[] = {1,2,3};
-        String tab[] = new String[2];
-        char[] t = new char[4];
-        double [] array = {0.25, 2.356, 1.57, 74.236};
+        char tableauCaractere[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g'};
+        System.out.println("Saisir 1 caractère");
+        Scanner sc = new Scanner(System.in);
+        char saisie = sc.nextLine().charAt(0);
+        boolean absent = true;
+        for (char caractere:tableauCaractere) {
+            if(caractere == saisie){
+                System.out.println("le caractère : " + saisie + " est dans le tableau");
+                absent = false;
+                break;
+            }
+        }
 
-        int [][] premiersNombre = { {0,2,4,6,8,10},{1,3,5,7,9} };
+        if(absent){
+            System.out.println("le caractère : " + saisie + " n'est pas dans le tableau");
+        }
+
+
 
     }
 }
