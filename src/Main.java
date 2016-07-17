@@ -4,52 +4,13 @@ import java.util.Scanner;
  * Created by pierr on 05/07/2016.
  */
 public class Main {
-	public static void main(String[] args){
-        double temperatureEntree = 0;
-        double temperatureSortie = 0;
-        char choix = ' ';
-        char quitter = ' ';
-        Scanner sc = new Scanner(System.in);
+	public static void main(String[] args) {
+        int tableau[] = {1,2,3};
+        String tab[] = new String[2];
+        char[] t = new char[4];
+        double [] array = {0.25, 2.356, 1.57, 74.236};
 
-		System.out.println("CONVERTISSEUR DEGRES CELCIUS ET DEGRES FAHRENHEIT");
-        System.out.println("-------------------------------------------------");
+        int [][] premiersNombre = { {0,2,4,6,8,10},{1,3,5,7,9} };
 
-        do {
-
-
-            do {
-                System.out.println("Choisissez le mode de conversion :");
-                System.out.println("1- Conversion Celsius - Fahrenheit");
-                System.out.println("2- Conversion Fahrenheit - Celsius");
-                choix = sc.nextLine().charAt(0);
-
-            } while (choix != '1' && choix != '2');
-
-            System.out.println("Température a convertir : ");
-            temperatureEntree = sc.nextDouble();
-            sc.nextLine();
-
-            if (choix == 1) {
-                temperatureSortie = ((9 / 5) * temperatureEntree) + 32;
-                temperatureSortie = arrondi(temperatureSortie, 2);
-                System.out.println(temperatureEntree + "°C correspond à : " + temperatureSortie + "°F");
-            } else {
-                temperatureSortie = ((temperatureEntree - 32) * 5) / 9;
-                temperatureSortie = arrondi(temperatureSortie, 2);
-                System.out.println(temperatureEntree + "°F correspond à : " + temperatureSortie + "°C");
-            }
-
-            do {
-                System.out.println("Souhaitez-vous convertir une autre température ? (O/N)");
-                quitter = sc.nextLine().charAt(0);
-            } while (quitter != 'N' && quitter != 'O');
-
-
-
-        } while (quitter != 'N');
-	}
-
-    public static double arrondi(double A, int B) {
-        return (double) ( (int) (A * Math.pow(10, B) + .5)) / Math.pow(10, B);
     }
 }
