@@ -63,5 +63,8 @@ public class Main {
         //----
         Capitale cap = new Capitale();
         System.out.println(cap.decrisToi());
+
+        Capitale cap2 = new Capitale("Paris", 654987, "France", "la tour Eiffel");
+        System.out.println("\n"+cap2.decrisToi());
     }
 }

@@ -13,10 +13,27 @@ public class Capitale extends Ville {
         monument = "aucun";
     }
 
+    public Capitale(String nom, int hab, String pays, String monument){
+        super(nom, hab, pays);
+        this.monument = monument;
+    }
+
     //méthodes de classe
     public String decrisToi(){
-        String str = super.decrisToi() + "\n \t ==>" + this.monument + "en est un monument";
+        String str = super.decrisToi() + "\n \t ==>" + this.monument + " en est un monument";
         System.out.println("Invocation de super.decrisToi()");
         return str;
+    }
+
+    /**
+     *
+     * @return le nom du monument
+     */
+    public String getMonument() {
+        return monument;
+    }
+
+    public void setMonument(String monument) {
+        this.monument = monument;
     }
 }
