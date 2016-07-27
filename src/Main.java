@@ -5,66 +5,24 @@ import java.util.Scanner;
  */
 public class Main {
 	public static void main(String[] args) {
-        Ville v = new Ville();
-        Ville v1 = new Ville("Marseille", 123456, "France");
-        Ville v2 = new Ville("Rio", 56789, "Brésil");
+        Ville[] tableau = new Ville[6];
 
-        System.out.println("\n v = "+v.getNom()+" ville de  "+v.getNombreHabitants()+ " habitants se situant en "+v.getNomPays());
-        System.out.println(" v1 = "+v1.getNom()+" ville de  "+v1.getNombreHabitants()+ " habitants se situant en "+v1.getNomPays());
-        System.out.println(" v2 = "+v2.getNom()+" ville de  "+v2.getNombreHabitants()+ " habitants se situant en "+v2.getNomPays()+"\n\n");
+        String[] tab = {"Marseille", "lille", "caen", "lyon", "paris", "nantes"};
+        int[] tab2 = {123456, 78456, 654987, 75832165, 1594, 213};
 
-        /*
-          Nous allons interchanger les Villes v1 et v2
-          tout ça par l'intermédiaire d'un autre objet Ville.
-        */
-        Ville temp = new Ville();
+        for(int i = 0; i < 6; i++){
+            if (i <3){
+                Ville V = new Ville(tab[i], tab2[i], "france");
+                tableau[i] = V;
+            }
+            else{
+                Capitale C = new Capitale(tab[i], tab2[i], "france", "la tour Eiffel");
+                tableau[i] = C;
+            }
+        }
 
-        temp = v1;
-        v1 = v2;
-        v2 = temp;
-
-        System.out.println(" v1 = "+v1.getNom()+" ville de  "+v1.getNombreHabitants()+ " habitants se situant en "+v1.getNomPays());
-        System.out.println(" v2 = "+v2.getNom()+" ville de  "+v2.getNombreHabitants()+ " habitants se situant en "+v2.getNomPays()+"\n\n");
-
-        /*
-          Nous allons maintenant interchanger leurs noms
-          cette fois par le biais de leurs mutateurs.
-        */
-
-        v1.setNom("Hong Kong");
-        v2.setNom("Djibouti");
-
-        System.out.println(" v1 = " + v1.getNom() + " ville de  " + v1.getNombreHabitants() + " habituant se situant en " + v1.getNomPays());
-        System.out.println(" v2 = "+v2.getNom()+" ville de  "+v2.getNombreHabitants()+ " habitants se situant en "+v2.getNomPays()+"\n\n");
-
-        //-----------------------------
-
-        Ville v00 = new Ville();
-        Ville v01 = new Ville("Marseille", 1236, "France");
-        Ville v02 = new Ville("Rio", 321654, "Brésil");
-
-        System.out.println("\n\n"+v01.decrisToi());
-        System.out.println(v00.decrisToi());        System.out.println(v02.decrisToi()+"\n\n");
-        System.out.println(v01.comparer(v02));
-
-
-        Ville v000 = new Ville();
-        System.out.println("Le nombre d'instances de la classe Ville est : " + Ville.nbreInstances);
-        System.out.println("Le nombre d'instances de la classe Ville est : " + Ville.getNbreInstancesBis());
-
-        Ville v001 = new Ville("Marseille", 1236, "France");
-        System.out.println("Le nombre d'instances de la classe Ville est : " + Ville.nbreInstances);
-        System.out.println("Le nombre d'instances de la classe Ville est : " + Ville.getNbreInstancesBis());
-
-        Ville v002 = new Ville("Rio", 321654, "Brésil");
-        System.out.println("Le nombre d'instances de la classe Ville est : " + Ville.nbreInstances);
-        System.out.println("Le nombre d'instances de la classe Ville est : " + Ville.getNbreInstancesBis());
-
-        //----
-        Capitale cap = new Capitale();
-        System.out.println(cap.decrisToi());
-
-        Capitale cap2 = new Capitale("Paris", 654987, "France", "la tour Eiffel");
-        System.out.println("\n"+cap2.decrisToi());
+        for(Object obj : tableau){
+            System.out.println(obj.toString()+"\n");
+        }
     }
 }

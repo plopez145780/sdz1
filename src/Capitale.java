@@ -19,8 +19,8 @@ public class Capitale extends Ville {
     }
 
     //méthodes de classe
-    public String decrisToi(){
-        String str = super.decrisToi() + "\n \t ==>" + this.monument + " en est un monument";
+    public String toString(){
+        String str = super.toString() + "\n \t ==>" + this.monument + " en est un monument";
         System.out.println("Invocation de super.decrisToi()");
         return str;
     }

@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 /**
  * Created by pierre on 24/07/2016.
  */
@@ -76,7 +78,7 @@ public class Ville {
         this.categorie = categories[i];
     }
 
-    public String decrisToi(){
+    public String toString(){
         return "\t"+this.nomVille+" est une ville de "+this.nomPays+ ", elle comporte : "+this.nbreHabitants+" habitant(s) => elle est donc de catégorie : "+this.categorie;
     }
 
@@ -89,4 +91,29 @@ public class Ville {
             str = this.nomVille+" est une ville plus peuplée que "+v1.getNom();
         return str;
     }
+
+    public int hashCode() {
+        return Objects.hash(categorie, nbreHabitants, nomPays, nomVille);
+    }
+
+
+    public boolean equals(Object obj) {
+        //On vérifie si les références d'objets sont identiques
+        if (this == obj)
+            return true;
+
+        //On s'assure que les objets sont du même type, ici de type Ville
+        if (getClass() != obj.getClass())
+            return false;
+
+        //Maintenant, on compare les attributs de nos objets
+        Ville other = (Ville) obj;
+
+        return Objects.equals(other.getCategorie(), this.getCategorie()) &&
+                Objects.equals(other.getNom(), this.getNom()) &&
+                Objects.equals(other.getNombreHabitants(), this.getNombreHabitants()) &&
+                Objects.equals(other.getNomPays(), this.getNomPays());
+    }
+
+
 }
