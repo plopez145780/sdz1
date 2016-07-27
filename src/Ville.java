@@ -2,6 +2,10 @@
  * Created by pierr on 24/07/2016.
  */
 public class Ville {
+    //variables de classe
+    public static int nbreInstances = 0;
+    private static int nbreInstancesBis = 0;
+
     //Variables d'instance / attributs
     private String nomVille;
     private int nbreHabitants;
@@ -15,6 +19,8 @@ public class Ville {
         nomPays = "Inconnue";
         nbreHabitants = 0;
         this.setCategorie();
+        nbreInstances++;
+        nbreInstancesBis++;
     }
 
     public Ville(String pNom, int pNbre, String pPays){
@@ -42,6 +48,10 @@ public class Ville {
         return categorie;
     }
 
+    public static int getNbreInstancesBis() {
+        return nbreInstancesBis;
+    }
+
     public void setNom(String pNom) {
         this.nomVille = pNom;
     }
@@ -54,6 +64,7 @@ public class Ville {
     public void setNomPays(String pPays) {
         this.nomPays = pPays;
     }
+
 
     //Méthodes d'instance
     private void setCategorie(){

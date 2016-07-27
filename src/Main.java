@@ -44,8 +44,21 @@ public class Main {
         Ville v02 = new Ville("Rio", 321654, "Brésil");
 
         System.out.println("\n\n"+v01.decrisToi());
-        System.out.println(v00.decrisToi());
-        System.out.println(v02.decrisToi()+"\n\n");
+        System.out.println(v00.decrisToi());        System.out.println(v02.decrisToi()+"\n\n");
         System.out.println(v01.comparer(v02));
+
+
+
+        Ville v000 = new Ville();
+        System.out.println("Le nombre d'instances de la classe Ville est : " + Ville.nbreInstances);
+        System.out.println("Le nombre d'instances de la classe Ville est : " + Ville.getNbreInstancesBis());
+
+        Ville v001 = new Ville("Marseille", 1236, "France");
+        System.out.println("Le nombre d'instances de la classe Ville est : " + Ville.nbreInstances);
+        System.out.println("Le nombre d'instances de la classe Ville est : " + Ville.getNbreInstancesBis());
+
+        Ville v002 = new Ville("Rio", 321654, "Brésil");
+        System.out.println("Le nombre d'instances de la classe Ville est : " + Ville.nbreInstances);
+        System.out.println("Le nombre d'instances de la classe Ville est : " + Ville.getNbreInstancesBis());
     }
 }
