@@ -1,16 +1,16 @@
 /**
- * Created by pierr on 24/07/2016.
+ * Created by pierre on 24/07/2016.
  */
 public class Ville {
     //variables de classe
     public static int nbreInstances = 0;
-    private static int nbreInstancesBis = 0;
+    protected static int nbreInstancesBis = 0;
 
     //Variables d'instance / attributs
-    private String nomVille;
-    private int nbreHabitants;
-    private String nomPays;
-    private char categorie;
+    protected String nomVille;
+    protected int nbreHabitants;
+    protected String nomPays;
+    protected char categorie;
 
     //controlleurs
     public Ville(){
