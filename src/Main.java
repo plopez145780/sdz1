@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 /**
  * Created by pierr on 05/07/2016.
  */
