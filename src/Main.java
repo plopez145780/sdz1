@@ -47,6 +47,7 @@ public class Main {
         System.out.println(v00.decrisToi());        System.out.println(v02.decrisToi()+"\n\n");
         System.out.println(v01.comparer(v02));
 
+<<<<<<< Updated upstream
 
 
         Ville v000 = new Ville();
@@ -60,5 +61,10 @@ public class Main {
         Ville v002 = new Ville("Rio", 321654, "Brésil");
         System.out.println("Le nombre d'instances de la classe Ville est : " + Ville.nbreInstances);
         System.out.println("Le nombre d'instances de la classe Ville est : " + Ville.getNbreInstancesBis());
+=======
+        //----
+        Capitale cap = new Capitale();
+        System.out.println(cap.decrisToi());
+>>>>>>> Stashed changes
     }
 }
