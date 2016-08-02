@@ -1,28 +1,45 @@
+import com.sdz.comportement.*;
+
 /**
  * Created by pierr on 02/08/2016.
  */
 public abstract class Personnage {
-    protected String armes = "", chaussure = "", sacDeSoin = "";
+    protected EspritCombatif espritCombatif = new Pacifiste();
+    protected Soin soin = new AucunSoin();
+    protected  Deplacement deplacement = new Marcher();
+
+    public Personnage(){
+
+    }
+
+    public Personnage(EspritCombatif espritCombatif, Soin soin, Deplacement deplacement){
+        this.espritCombatif = espritCombatif;
+        this.soin = soin;
+        this.deplacement = deplacement;
+    }
 
     public void seDeplacer(){
-        System.out.println("Je me déplace à pied.");
+        deplacement.deplacer();
     }
     public void combattre(){
-        System.out.println("Je ne combats PAS !");
+        espritCombatif.combat();
     }
     public void soigner(){
-        System.out.println("Je ne soigne pas.");
+        soin.soigne();
     }
 
-    protected void setArmes(String armes) {
-        this.armes = armes;
+    //Redéfinit le comportement au combat
+    public void setEspritCombatif(EspritCombatif espritCombatif) {
+        this.espritCombatif = espritCombatif;
     }
 
-    protected void setChaussure(String chaussure) {
-        this.chaussure = chaussure;
+    //Redéfinit le comportement de Soin
+    public void setSoin(Soin soin) {
+        this.soin = soin;
     }
 
-    protected void setSacDeSoin(String sacDeSoin) {
-        this.sacDeSoin = sacDeSoin;
+    //Redéfinit le comportement de déplacement
+    public void setDeplacement(Deplacement deplacement) {
+        this.deplacement = deplacement;
     }
 }

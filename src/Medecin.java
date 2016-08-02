@@ -1,18 +1,12 @@
+import com.sdz.comportement.*;
 /**
  * Created by pierr on 02/08/2016.
  */
 public class Medecin extends Personnage {
-    public void combattre() {
-        if(this.armes.equals("pistolet"))
-            System.out.println("Attaque au pistolet !");
-        else
-            System.out.println("Vive le scalpel !");
+    public Medecin() {
+        this.soin = new PremierSoin();
     }
-
-    public void soigner(){
-        if(this.sacDeSoin.equals("petit sac"))
-            System.out.println("Je peux recoudre des blessures.");
-        else
-            System.out.println("Je soigne les blessures.");
+    public Medecin(EspritCombatif esprit, Soin soin, Deplacement dep) {
+        super(esprit, soin, dep);
     }
 }

@@ -1,11 +1,14 @@
+import com.sdz.comportement.*;
+
 /**
  * Created by pierr on 02/08/2016.
  */
 public class Sniper extends Personnage{
-    public void combattre() {
-        if(this.armes.equals("fusil à pompe"))
-            System.out.println("Attaque au fusil à pompe !");
-        else
-            System.out.println("Je me sers de mon fusil à lunette !");
+    public Sniper(){
+        this.espritCombatif = new CombatPistolet();
+    }
+
+    public Sniper(EspritCombatif esprit, Soin soin, Deplacement dep){
+        super(esprit, soin, dep);
     }
 }
