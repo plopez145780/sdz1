@@ -2,15 +2,10 @@
  * Created by pierr on 02/08/2016.
  */
 public class Chirurgien extends Personnage{
-    public void combattre() {
-        System.out.println("Je ne combats PAS !");
-    }
-
-    public void seDeplacer() {
-        System.out.println("Je me déplace à pied.");
-    }
-
     public void soigner(){
-        System.out.println("Je fais des opérations.");
+        if(this.sacDeSoin.equals("gros sac"))
+            System.out.println("Je fais des merveilles.");
+        else
+            System.out.println("Je fais des opérations.");
     }
 }
