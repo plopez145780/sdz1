@@ -1,22 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4aa88dfa-1c86-4f69-aefd-b9ade09ae641" name="Default" comment="classes abstraites">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Animal.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Canin.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Chat.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Chien.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Felin.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Lion.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Loup.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Tigre.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Capitale.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Ville.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/sdz/test/A.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/sdz/test/B.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/sdz/test2/Main.java" afterPath="" />
+    <list default="true" id="4aa88dfa-1c86-4f69-aefd-b9ade09ae641" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
     </list>
     <ignored path="sdz1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -555,6 +541,14 @@
       <option name="presentableId" value="Default" />
       <updated>1469647728061</updated>
     </task>
+    <task id="LOCAL-00001" summary="classes abstraites">
+      <created>1470151102787</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1470151102787</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
