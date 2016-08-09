@@ -13,7 +13,7 @@ public class Capitale extends Ville {
         monument = "aucun";
     }
 
-    public Capitale(String nom, int hab, String pays, String monument){
+    public Capitale(String nom, int hab, String pays, String monument)throws NombreHabitantException, NomVilleException {
         super(nom, hab, pays);
         this.monument = monument;
     }

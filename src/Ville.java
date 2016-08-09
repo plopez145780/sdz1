@@ -23,12 +23,20 @@ public class Ville {
         nbreInstancesBis++;
     }
 
-    public Ville(String pNom, int pNbre, String pPays){
-        System.out.println("Création d'une ville avec des paramètres !");
-        nomVille = pNom;
-        nomPays = pPays;
-        nbreHabitants = pNbre;
-        this.setCategorie();
+    public Ville(String pNom, int pNbre, String pPays) throws NombreHabitantException, NomVilleException {
+        if(pNbre < 0)
+            throw new NombreHabitantException(pNbre);
+        if(pNom.length() < 3)
+            throw new NomVilleException("le nom de la ville est inférieur à 3 caractères ! nom = " + pNom);
+        else {
+            nbreInstances++;
+            nbreInstancesBis++;
+
+            nomVille = pNom;
+            nomPays = pPays;
+            nbreHabitants = pNbre;
+            this.setCategorie();
+        }
     }
 
     //getter(asseceurs) / setter(mutateurs)
