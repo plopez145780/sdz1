@@ -1,36 +1,60 @@
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
-/**
- * Created by pierr on 11/08/2016.
- */
 public class Main {
     public static void main(String[] args){
+        FileInputStream fis = null;
+        FileOutputStream fos = null;
+        File f = null;
+        try{
+            // fis va lire le fichier
+            // fos va écrire dans le nouveau !
+            f = new File("IO/test.txt");
+            fis = new FileInputStream(f);
+            fos = new FileOutputStream(new File("IO/test2.txt"));
 
-        File f = new File("IO/test.txt");
+            byte[] buf = new byte[8];
 
-        System.out.println("Chemin absolu du fichier : " + f.getAbsolutePath());
-        System.out.println("Nom du fichier : " + f.getName());
-        System.out.println("Est-ce qu'il existe ? " + f.exists());
-        System.out.println("Est-ce un répertoire ? " + f.isDirectory());
-        System.out.println("Est-ce un fichier ? " + f.isFile());
+            int n = 0;
 
-        System.out.println("Affichage des lecteurs a la racine du PC : ");
-        for(File file : f.listRoots()){
-            System.out.println(file.getAbsolutePath());
-            try{
-                int i = 1;
-                for (File nom : file.listFiles()){
-                    System.out.println("\t\t" + ((nom.isDirectory()) ? nom.getName() + "/" : nom.getName()));
+            while((n = fis.read(buf)) >= 0){
+                fos.write(buf);
 
-                    if((i%4) == 0){
-                        System.out.print("\n");
-                    }
-                    i++;
+                for (byte bit : buf){
+                    System.out.print("\t" + bit + "(" + (char)bit + ")");
                 }
-                System.out.println("\n");
-            }
-            catch(NullPointerException e){
+                System.out.println("");
 
+                buf = new byte[8];
+            }
+            System.out.println("Copie terminée !");
+        }
+        catch(FileNotFoundException e){
+            e.printStackTrace();
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                if (fis != null) {
+                    fis.close();
+                }
+            }
+            catch(IOException e){
+                e.printStackTrace();
+            }
+
+            try{
+                if(fos != null){
+                    fos.close();
+                }
+            }
+            catch (IOException e){
+                e.printStackTrace();
             }
         }
     }
