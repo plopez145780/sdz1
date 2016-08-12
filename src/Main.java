@@ -1,40 +1,47 @@
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Main {
     public static void main(String[] args){
-        DataInputStream dis = null;
-        DataOutputStream dos = null;
+        ObjectInputStream ois = null;
+        ObjectOutputStream oos = null;
 
         try{
-            dos = new DataOutputStream(
+            oos = new ObjectOutputStream(
                     new BufferedOutputStream(
                             new FileOutputStream(
-                                    new File("sdz.txt"))));
+                                    new File("game.txt"))));
 
-            dos.writeBoolean(true);
-            dos.writeByte(100);
-            dos.writeChar('C');
-            dos.writeDouble(12.05);
-            dos.writeFloat(100.52f);
-            dos.writeInt(1024);
-            dos.writeLong(1234567890L);
-            dos.writeShort(2);
-            dos.close();
+            oos.writeObject(new Game("Assassin Creed", "Aventure", 45.69));
+            oos.writeObject(new Game("Tomb Raider", "Plateforme", 23.45));
+            oos.writeObject(new Game("Tetris", "Stratégie", 2.50));
+            oos.close();
 
-            dis = new DataInputStream(
+            ois = new ObjectInputStream(
                     new BufferedInputStream(
                             new FileInputStream(
-                                    new File("sdz.txt"))));
+                                    new File("game.txt"))));
 
-            System.out.println(dis.readBoolean());
-            System.out.println(dis.readByte());
-            System.out.println(dis.readChar());
-            System.out.println(dis.readDouble());
-            System.out.println(dis.readFloat());
-            System.out.println(dis.readInt());
-            System.out.println(dis.readLong());
-            System.out.println(dis.readShort());
-
+            try{
+                System.out.println("Affichage des jeux :");
+                System.out.println("*************************\n");
+                System.out.println(((Game)ois.readObject()).toString());
+                System.out.println(((Game)ois.readObject()).toString());
+                System.out.println(((Game)ois.readObject()).toString());
+            }
+            catch(ClassNotFoundException e){
+                e.printStackTrace();
+            }
+            ois.close();
         }
         catch(FileNotFoundException e){
             e.printStackTrace();
@@ -44,8 +51,8 @@ public class Main {
         }
         finally {
             try {
-                if (dis != null) {
-                    dis.close();
+                if (ois != null) {
+                    ois.close();
                 }
             }
             catch(IOException e){
@@ -53,8 +60,8 @@ public class Main {
             }
 
             try{
-                if(dos != null){
-                    dos.close();
+                if(oos != null){
+                    oos.close();
                 }
             }
             catch (IOException e){
