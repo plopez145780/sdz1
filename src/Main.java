@@ -1,45 +1,40 @@
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 
 public class Main {
     public static void main(String[] args){
-        FileInputStream fis = null;
-        FileOutputStream fos = null;
-        BufferedInputStream bis = null;
-        BufferedOutputStream bos = null;
+        DataInputStream dis = null;
+        DataOutputStream dos = null;
 
         try{
-            fis = new FileInputStream(new File("test.txt"));
-            bis = new BufferedInputStream(
-                    new FileInputStream(
-                            new File("test.txt")
-                    )
-            );
+            dos = new DataOutputStream(
+                    new BufferedOutputStream(
+                            new FileOutputStream(
+                                    new File("sdz.txt"))));
 
-            fos = new FileOutputStream(new File("test2.txt"));
-            bos = new BufferedOutputStream(
-                    new FileOutputStream(
-                            new File("test3.txt")
-                    )
-            );
+            dos.writeBoolean(true);
+            dos.writeByte(100);
+            dos.writeChar('C');
+            dos.writeDouble(12.05);
+            dos.writeFloat(100.52f);
+            dos.writeInt(1024);
+            dos.writeLong(1234567890L);
+            dos.writeShort(2);
+            dos.close();
 
-            byte[] buf = new byte[8];
-            long startTime = System.currentTimeMillis();
-            while(fis.read(buf) != -1){
-                fos.write(buf);
-            }
-            System.out.println("Temps de lecture/ecriture avec FileInputStream/FileOutputStream : " + (System.currentTimeMillis() - startTime));
+            dis = new DataInputStream(
+                    new BufferedInputStream(
+                            new FileInputStream(
+                                    new File("sdz.txt"))));
 
-            startTime = System.currentTimeMillis();
-            while(bis.read(buf) != -1){
-                bos.write(buf);
-            }
-            System.out.println("Temps de lecture/ecriture avec BufferedInputStream/BufferedOutputStream : " + (System.currentTimeMillis() - startTime));
+            System.out.println(dis.readBoolean());
+            System.out.println(dis.readByte());
+            System.out.println(dis.readChar());
+            System.out.println(dis.readDouble());
+            System.out.println(dis.readFloat());
+            System.out.println(dis.readInt());
+            System.out.println(dis.readLong());
+            System.out.println(dis.readShort());
+
         }
         catch(FileNotFoundException e){
             e.printStackTrace();
@@ -49,8 +44,8 @@ public class Main {
         }
         finally {
             try {
-                if (fis != null) {
-                    fis.close();
+                if (dis != null) {
+                    dis.close();
                 }
             }
             catch(IOException e){
@@ -58,26 +53,8 @@ public class Main {
             }
 
             try{
-                if(bis != null){
-                    bis.close();
-                }
-            }
-            catch (IOException e){
-                e.printStackTrace();
-            }
-
-            try {
-                if (fos != null) {
-                    fos.close();
-                }
-            }
-            catch(IOException e){
-                e.printStackTrace();
-            }
-
-            try{
-                if(bos != null){
-                    bos.close();
+                if(dos != null){
+                    dos.close();
                 }
             }
             catch (IOException e){
