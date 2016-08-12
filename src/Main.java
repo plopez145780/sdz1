@@ -4,33 +4,30 @@ import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import java.io.BufferedInputStream;
+import java.io.DataInputStream;
+
 public class Main {
     public static void main(String[] args){
         FileInputStream fis = null;
-        FileOutputStream fos = null;
-        File f = null;
+        BufferedInputStream bis = null;
+
         try{
-            // fis va lire le fichier
-            // fos va écrire dans le nouveau !
-            f = new File("IO/test.txt");
-            fis = new FileInputStream(f);
-            fos = new FileOutputStream(new File("IO/test2.txt"));
+            fis = new FileInputStream(new File("test.txt"));
+            bis = new BufferedInputStream(
+                    new FileInputStream(
+                            new File("test.txt")
+                    )
+            );
 
             byte[] buf = new byte[8];
+            long startTime = System.currentTimeMillis();
+            while(fis.read(buf) != -1);
+            System.out.println("Temps de lecture avec FileInputStream : " + (System.currentTimeMillis() - startTime));
 
-            int n = 0;
-
-            while((n = fis.read(buf)) >= 0){
-                fos.write(buf);
-
-                for (byte bit : buf){
-                    System.out.print("\t" + bit + "(" + (char)bit + ")");
-                }
-                System.out.println("");
-
-                buf = new byte[8];
-            }
-            System.out.println("Copie terminée !");
+            startTime = System.currentTimeMillis();
+            while(bis.read(buf) != -1);
+            System.out.println("Temps de lecture avec BufferedInputStream : " + (System.currentTimeMillis() - startTime));
         }
         catch(FileNotFoundException e){
             e.printStackTrace();
@@ -49,8 +46,8 @@ public class Main {
             }
 
             try{
-                if(fos != null){
-                    fos.close();
+                if(bis != null){
+                    bis.close();
                 }
             }
             catch (IOException e){
