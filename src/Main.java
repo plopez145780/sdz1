@@ -1,53 +1,51 @@
-//Packages à importer afin d'utiliser l'objet File
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
-import java.nio.channels.FileChannel;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.*;
 
 public class Main {
     public static void main(String[] args) {
-        try (FileInputStream fis = new FileInputStream("test.txt");
-             BufferedInputStream bis = new BufferedInputStream(fis);
-             FileChannel fc = fis.getChannel()){
+        Path path = Paths.get("test.txt");
+        System.out.println("Chemin absolu du fichier : " + path.toAbsolutePath());
+        System.out.println("Est-ce qu'il existe ? " + Files.exists(path));
+        System.out.println("Nom du fichier : " + path.getFileName());
+        System.out.println("Est-ce un répertoire ? " + Files.isDirectory(path));
 
-            //Démarrage du chrono
-            long time = System.currentTimeMillis();
-            //Lecture
-            while(bis.read() != -1);
-            //Temps d'exécution
-            System.out.println("Temps d'exécution avec un buffer conventionnel : " + (System.currentTimeMillis() - time));
+        //On récupère maintenant la liste des répertoires dans une collection typée
+        //Via l'objet FileSystem qui représente le système de fichier de l'OS hébergeant la JVM
+        Iterable<Path> roots = FileSystems.getDefault().getRootDirectories();
 
-            //Création d'un nouveau flux de fichier
-            //fis = new FileInputStream(new File("test.txt"));
-            //On récupère le canal
-            //fc = fis.getChannel();
-            //On en déduit la taille
-            int size = (int)fc.size();
-            //On crée un buffer correspondant à la taille du fichier
-            ByteBuffer bBuff = ByteBuffer.allocate(size);
+        //Maintenant, il ne nous reste plus qu'à parcourir
+        for(Path chemin : roots) {
+            System.out.println(chemin);
+            //Pour lister un répertoire, il faut utiliser l'objet DirectoryStream
+            //L'objet Files permet de créer ce type d'objet afin de pouvoir l'utiliser
+            try(DirectoryStream<Path> listing = Files.newDirectoryStream(chemin, "*.txt")){
+                int i = 0;
+                for (Path nom : listing){
+                    System.out.println("\t\t" + ((Files.isDirectory(nom)) ? nom + "/" : nom));
+                    i++;
+                    if(i%4 == 4)
+                        System.out.println("\n");
+                }
+            } catch (IOException e){
+                e.printStackTrace();
+            }
 
-            //Démarrage du chrono
-            time = System.currentTimeMillis();
-            //Démarrage de la lecture
-            fc.read(bBuff);
-            //On prépare à la lecture avec l'appel à flip
-            bBuff.flip();
-            //Affichage du temps d'exécution
-            System.out.println("Temps d'exécution avec un nouveau buffer : " + (System.currentTimeMillis() - time));
+            Path source = Paths.get("test.txt");
+            Path cible = Paths.get("test2.txt");
+            try {
+                Files.copy(source, cible, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) { e.printStackTrace();	}
 
-            //Puisque nous avons utilisé un buffer de byte afin de récupérer les données
-            //Nous pouvons utiliser un tableau de byte
-            //La méthode array retourne un tableau de byte
-            byte[] tabByte = bBuff.array();
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+
+            source = Paths.get("test2.txt");
+            cible = Paths.get("test3.txt");
+            try {
+                Files.move(source, cible, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) { e.printStackTrace();  }
+
+
         }
     }
 }
